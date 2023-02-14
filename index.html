@@ -1,11 +1,29 @@
 <html>
     <head>
-        <script src="https://onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer/></script>
-<script>
-    window.OneSignal = window.OneSignal || [];
-</script>
+        <script src="https://onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer/>
+            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            OneSignalDeferred.push(function(OneSignal) {
+                OneSignal.init({});
+            });
+
+            const form = document.getElementById('login-form');
+            form.addEventListener('submit', () => {
+                const formData = new FormData(form)
+                console.log(formData.get('name'))
+                console.log(formData.get('phone'))
+                OneSignal.login(formData.get('phone'));
+            });
+        </script>
     </head>
 <body>
-    hello Echo Summit
+    <h1>hello Echo Summit</h1>
+    <p>Enter your name and phone number if you'd like to receive pictures of snow.</p>
+    <form id="login-form">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="phone">
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
