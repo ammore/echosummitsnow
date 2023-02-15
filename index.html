@@ -1,26 +1,6 @@
 <html>
     <head>
         <script src="https://onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer/></script> 
-        <script> 
-            var OneSignalDeferred = window.OneSignalDeferred || [];
-                OneSignalDeferred.push(async function(onesignal) {
-                    await onesignal.init({
-                    appId: "ff572241-e77a-4188-b60d-1168726254a4",
-                    safari_web_id: "web.onesignal.auto.5a2165c8-9d94-4308-bfd9-99a8484077b6",
-                    notifyButton: {
-                    enable: true,
-      },
-      subdomainName: "echosummitsnow",
-    });
-  });
-            const form = document.getElementById('login-form');
-            form.addEventListener('submit', () => {
-                const formData = new FormData(form)
-                console.log(formData.get('name'))
-                console.log(formData.get('phone'))
-                OneSignal.login(formData.get('phone'));
-            });
-        </script>
     </head>
 <body>
     <h1>hello Echo Summit</h1>
@@ -32,5 +12,25 @@
         <input id="phone" name="phone" type="phone">
         <button type="submit">Submit</button>
     </form>
+    <script> 
+        var OneSignalDeferred = window.OneSignalDeferred || [];
+            OneSignalDeferred.push(async function(onesignal) {
+                await onesignal.init({
+                appId: "ff572241-e77a-4188-b60d-1168726254a4",
+                safari_web_id: "web.onesignal.auto.5a2165c8-9d94-4308-bfd9-99a8484077b6",
+                notifyButton: {
+                enable: true,
+  },
+  subdomainName: "echosummitsnow",
+});
+});
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', () => {
+            const formData = new FormData(form)
+            console.log(formData.get('name'))
+            console.log(formData.get('phone'))
+            OneSignal.login(formData.get('phone'));
+        });
+    </script>
 </body>
 </html>
